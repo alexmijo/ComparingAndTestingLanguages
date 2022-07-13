@@ -1,2 +1,2 @@
-PassByWhatever: PassByWhatever.cpp
-	g++ PassByWhatever.cpp -o PassByWhatever
+Maincpp: Main.cpp
+	g++ Main.cpp -o Maincpp

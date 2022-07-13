@@ -1,4 +1,4 @@
-class PassByWhatever{
+class Main{
     public static void main(String args[]) {
         TestClass testObject = new TestClass(3);
         System.out.println("After initialization: " + testObject.getValue());
