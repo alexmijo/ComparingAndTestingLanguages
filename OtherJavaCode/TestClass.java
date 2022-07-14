@@ -1,3 +1,5 @@
+package OtherJavaCode;
+
 public class TestClass {
 
     private int value;

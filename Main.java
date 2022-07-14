@@ -1,3 +1,5 @@
+import OtherJavaCode.TestClass;
+
 class Main{
     public static void main(String args[]) {
         TestClass testObject = new TestClass(3);

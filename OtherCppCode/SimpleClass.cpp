@@ -1,11 +1,11 @@
-class TestClass {
+class SimpleClass {
 private:
 
     int value;
 
 public:
 
-    TestClass(int value) : value(value) {}
+    SimpleClass(int value) : value(value) {}
 
     int getValue() {
         return value;
