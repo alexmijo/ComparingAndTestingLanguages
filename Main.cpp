@@ -4,8 +4,9 @@
 void mutateSimpleObject(SimpleClass simpleObject, int newValue);
 // Variable names not needed
 void reassignSimpleObject(SimpleClass, int);
-void mutateDeepObject(DeepClass, int, int, int);
+void mutateDeepObject(DeepClass, int, int, int); // Don't use
 void betterMutateDeepObject(DeepClass&, int, int, int); // Need the &
+void mutateBetterDeepObject(BetterDeepClass, int, int, int);
 
 int main() {
     SimpleClass simpleObject(3);
@@ -55,6 +56,40 @@ int main() {
     // Still can't do this cause it'd cause a double delete for pointer. Deep class is really not
     //  good.
     // DeepClass newDeepObject = deepObject;
+
+    std::cout << "Now, BetterDeepClass:" << std::endl;
+    SimpleClass pointedToSimpleObject(2); 
+    BetterDeepClass betterDeepObject(1, &pointedToSimpleObject, 3);
+    std::cout << "Object value after initialization: " << betterDeepObject.getObjectValue()
+              << std::endl << "Pointer value after initialization: "
+              << betterDeepObject.getPointerValue() << std::endl
+              << "Shallow value after initialization: " << betterDeepObject.getShallowValue()
+              << std::endl;
+
+    mutateBetterDeepObject(betterDeepObject, 4, 5, 6);
+    std::cout << "Object value after mutateBetterDeepObject: " << betterDeepObject.getObjectValue()
+              << std::endl << "Pointer value after mutateBetterDeepObject: "
+              << betterDeepObject.getPointerValue() << std::endl
+              << "Shallow value after mutateBetterDeepObject: "
+              << betterDeepObject.getShallowValue() << std::endl;
+
+    // Conclusion: The copy is deep (as I understand the term), but not through pointers.
+
+    BetterDeepClass newBetterDeepObject = betterDeepObject;
+    newBetterDeepObject.setObjectValue(7);
+    newBetterDeepObject.setPointerValue(8);
+    newBetterDeepObject.setShallowValue(9);
+    std::cout << "betterDeepObject.getObjectValue(): " << betterDeepObject.getObjectValue()
+              << std::endl << "betterDeepObject.getPointerValue(): "
+              << betterDeepObject.getPointerValue() << std::endl
+              << "betterDeepObject.getShallowValue(): " << betterDeepObject.getShallowValue()
+              << std::endl;
+    std::cout << "newBetterDeepObject.getObjectValue(): " << newBetterDeepObject.getObjectValue()
+              << std::endl << "newBetterDeepObject.getPointerValue(): "
+              << newBetterDeepObject.getPointerValue() << std::endl
+              << "newBetterDeepObject.getShallowValue(): " << newBetterDeepObject.getShallowValue()
+              << std::endl;
+    // The above all works as expected
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {
@@ -66,6 +101,7 @@ void reassignSimpleObject(SimpleClass simpleObject, int newSimpleClassValue) {
     simpleObject = newSimpleObject;
 }
 
+// Very bad, don't use
 void mutateDeepObject(DeepClass deepObject, int newObjectValue, int newPointerValue,
                       int newShallowValue) {
     deepObject.setObjectValue(newObjectValue);
@@ -78,4 +114,11 @@ void betterMutateDeepObject(DeepClass& deepObject, int newObjectValue, int newPo
     deepObject.setObjectValue(newObjectValue);
     deepObject.setPointerValue(newPointerValue);
     deepObject.setShallowValue(newShallowValue);
+}
+
+void mutateBetterDeepObject(BetterDeepClass betterDeepObject, int newObjectValue,
+                            int newPointerValue, int newShallowValue) {
+    betterDeepObject.setObjectValue(newObjectValue);
+    betterDeepObject.setPointerValue(newPointerValue);
+    betterDeepObject.setShallowValue(newShallowValue);
 }
