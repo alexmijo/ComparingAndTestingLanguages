@@ -16,3 +16,11 @@ print("dict2:", dict2)
 print("dict3:", dict3)
 
 # Conclusion: Aliasing/copying/reasigning works as expected
+
+def mutate_dict(dict, key, new_value):
+    dict[key] = new_value
+mutate_dict(dict1, 4, 0)
+
+print("dict1 after mutate_dict(dict1, 4, 0):", dict1)
+
+# Conclusion: Python is call by object reference value, like Java
