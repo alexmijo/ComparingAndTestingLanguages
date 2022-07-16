@@ -24,3 +24,9 @@ mutate_dict(dict1, 4, 0)
 print("dict1 after mutate_dict(dict1, 4, 0):", dict1)
 
 # Conclusion: Python is call by object reference value, like Java
+
+for i in range(40):
+    pass
+print(i)
+
+# Conclusion: loop variable persists as its last value
