@@ -30,3 +30,14 @@ for i in range(40):
 print(i)
 
 # Conclusion: loop variable persists as its last value
+
+dict4 = {1:2, 2:3, 3:4}
+dict5 = {1:2, 2:3, 3:3}
+dict6 = dict4.copy()
+dict5[3] += 1
+
+print(dict4 == dict5)
+print(dict4 == dict6)
+print(dict5 == dict6)
+
+# Conclusion: All true, so compares values
