@@ -78,3 +78,21 @@ Child3()
 
 # Conclusion: If a child has a constructor it overwrites their parents constructor, even if the
 #  number of parameters are different.
+
+def param_count():
+    print("P")
+
+def param_count(cols):
+    print("P" * cols)
+
+def param_count(cols, rows):
+    for i in range(rows):
+        print("P" * cols)
+
+# Don't work
+# param_count()
+# param_count(2)
+param_count(3, 3)
+
+# Conclusion: Can't have two functions with the same name but a different number of parameters in
+#  Python.
