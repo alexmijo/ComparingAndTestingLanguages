@@ -95,4 +95,4 @@ def param_count(cols, rows):
 param_count(3, 3)
 
 # Conclusion: Can't have two functions with the same name but a different number of parameters in
-#  Python.
+#  Python. Could just use optional parameters/None though.
