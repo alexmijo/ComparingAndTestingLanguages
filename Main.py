@@ -41,3 +41,40 @@ print(dict4 == dict6)
 print(dict5 == dict6)
 
 # Conclusion: All true, so compares values
+
+class Parent1:
+    def __init__(self):
+        print("Hi1")
+
+class Parent2:
+    def __init__(self, times):
+        print("Hi2" * times)
+
+class Parent3:
+    pass
+
+class Child1(Parent1):
+    pass
+
+class Child2(Parent2):
+    pass
+
+class OtherChild2(Parent2):
+    def __init__(self):
+        print("OtherHi2")
+
+class Child3(Parent3):
+    pass
+
+Parent1()
+Parent2(3)
+Parent3()
+Child1()
+Child2(3)
+OtherChild2()
+# Doesn't work
+# OtherChild2(2)
+Child3()
+
+# Conclusion: If a child has a constructor it overwrites their parents constructor, even if the
+#  number of parameters are different.
