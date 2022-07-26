@@ -180,7 +180,17 @@ int main() {
     printIntIntsInOrderedMap(orderedMapOfInts);
 
     // Unsorted, a HashMap (like with sets) (O(1))
-    // TODO
+    std::unordered_map<int, int> unorderedMapOfInts;
+    unorderedMapOfInts[-5] = 25;
+    unorderedMapOfInts[4] = 16;
+    unorderedMapOfInts[3] = 9;
+    printIntIntsInUnorderedMap(unorderedMapOfInts);
+    std::cout << (unorderedMapOfInts.find(-5) != unorderedMapOfInts.end() ? "true" : "false")
+        << std::endl;
+    unorderedMapOfInts.erase(-5);
+    std::cout << (unorderedMapOfInts.find(-5) != unorderedMapOfInts.end() ? "true" : "false")
+        << std::endl;
+    printIntIntsInUnorderedMap(unorderedMapOfInts);
 }
 
 // <separator> optional
