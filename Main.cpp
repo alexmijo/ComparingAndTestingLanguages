@@ -1,5 +1,7 @@
 #include "OtherCppCode/DeepClass.cpp"
 #include <iostream>
+#include <vector>
+#include <memory>
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue);
 // Variable names not needed
@@ -7,6 +9,16 @@ void reassignSimpleObject(SimpleClass, int);
 void mutateDeepObject(DeepClass, int, int, int); // Don't use
 void betterMutateDeepObject(DeepClass&, int, int, int); // Need the &
 void mutateBetterDeepObject(BetterDeepClass, int, int, int);
+
+void modifyValueUniquePointer(const std::unique_ptr<SimpleClass>& uniquePointer, int newValue) {
+    uniquePointer->setValue(newValue);
+}
+
+// This function is useless lol
+void modifyValueUniquePointerNotReference(std::unique_ptr<SimpleClass> uniquePointer,
+                                          int newValue) {
+    uniquePointer->setValue(newValue);
+}
 
 int main() {
     SimpleClass simpleObject(3);
@@ -90,6 +102,54 @@ int main() {
               << "newBetterDeepObject.getShallowValue(): " << newBetterDeepObject.getShallowValue()
               << std::endl;
     // The above all works as expected
+
+    std::vector<SimpleClass*> vec;
+    for (int value = 1; value <= 5; value++) {
+        SimpleClass simpleElement(value);
+        vec.push_back(&simpleElement);
+    }
+    for (auto simplePointer : vec) {
+        std::cout << simplePointer->getValue() << std::endl;
+    }
+    // The above didn't work.
+
+    std::cout << std::endl;
+    std::vector<SimpleClass*> vec1;
+    for (int value = 1; value <= 5; value++) {
+        SimpleClass *simpleElement = new SimpleClass(value);
+        vec1.push_back(simpleElement);
+    }
+    for (auto simplePointer : vec1) {
+        std::cout << simplePointer->getValue() << std::endl;
+    }
+    // That works, but I have to remember to delete.
+    for (auto simplePointer : vec1) {
+        delete simplePointer;
+    }
+
+    // Basically, I want to use shared_ptr, I think
+    std::cout << std::endl;
+    std::vector<std::shared_ptr<SimpleClass>> vec2;
+    for (int value = 1; value <= 5; value++) {
+        SimpleClass *simpleElement = new SimpleClass(value);
+        std::shared_ptr<SimpleClass> simpleEl(simpleElement);
+        // Also works:
+        // std::shared_ptr<SimpleClass> simpleElement = std::make_shared<SimpleClass>(value);
+        vec2.push_back(simpleEl);
+    }
+    for (auto simplePointer : vec2) {
+        std::cout << simplePointer->getValue() << std::endl;
+    }
+
+    std::unique_ptr<SimpleClass> unPointer = std::make_unique<SimpleClass>(7);
+    modifyValueUniquePointer(unPointer, 8);
+    std::cout << unPointer->getValue() << std::endl;
+
+    // Doesn't work, unique_ptrs can't be copied
+    // modifyValueUniquePointerNotReference(unPointer, 9);
+    // But watch out! This compiles but gets segmentation error since unPointer gets moved to inside
+    //  the function and then deleted after going out of scope when the function returns.
+    // modifyValueUniquePointerNotReference(std::move(unPointer), 9);
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {
