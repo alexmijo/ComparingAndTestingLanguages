@@ -162,6 +162,16 @@ int main() {
     SimpleClass c(3);
 
     std::cout << a.getValue() << " " << b.getValue() << " " << c.getValue() << std::endl;
+
+    // Don't have to worry about the below since an alias can't be re-aliased, therefore it can only
+    //  exist in the same scope as the thing it's aliasing.
+
+    // std::unique_ptr<SimpleClass>& unPointyAlias; <<<<< Problem here
+    // {
+    //     std::unique_ptr<SimpleClass> unPointy = std::make_unique<SimpleClass>(10);
+    //     unPointyAlias = unPointy;
+    // }
+    // std::cout << unPointyAlias->getValue() << std::endl;
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {
