@@ -20,6 +20,10 @@ void modifyValueUniquePointerNotReference(std::unique_ptr<SimpleClass> uniquePoi
     uniquePointer->setValue(newValue);
 }
 
+SimpleClass testTemporaryReturns(int value) {
+    return SimpleClass(value);
+}
+
 int main() {
     SimpleClass simpleObject(3);
     std::cout << "After initialization: " << simpleObject.getValue() << std::endl;
@@ -150,6 +154,14 @@ int main() {
     // But watch out! This compiles but gets segmentation error since unPointer gets moved to inside
     //  the function and then deleted after going out of scope when the function returns.
     // modifyValueUniquePointerNotReference(std::move(unPointer), 9);
+
+    // Gotta remember I can use all three of these, and all three do constructor calls. a and b have
+    //  constructor calls that return temporary (unnamed) objects.
+    SimpleClass a = testTemporaryReturns(1);
+    SimpleClass b = SimpleClass(2);
+    SimpleClass c(3);
+
+    std::cout << a.getValue() << " " << b.getValue() << " " << c.getValue() << std::endl;
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {
