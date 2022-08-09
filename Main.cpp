@@ -172,6 +172,15 @@ int main() {
     //     unPointyAlias = unPointy;
     // }
     // std::cout << unPointyAlias->getValue() << std::endl;
+
+    // This is fine, when the alias goes out of scope it must know it's just an alias I guess. I
+    //  suppose when thinking more generally about aliases that's the only thing that'd actually
+    //  make sense anyways.
+    std::unique_ptr<SimpleClass> unPointy = std::make_unique<SimpleClass>(10);
+    {
+        std::unique_ptr<SimpleClass>& unPointyAlias = unPointy;
+    }
+    std::cout << unPointy->getValue() << std::endl;
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {
