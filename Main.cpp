@@ -14,6 +14,24 @@ void modifyValueUniquePointer(const std::unique_ptr<SimpleClass>& uniquePointer,
     uniquePointer->setValue(newValue);
 }
 
+template <typename T>
+void printVector(const std::vector<T>& vector, const std::string& separator=" ") {
+    for (const T element : vector) {
+        // Trailing separator printed
+        std::cout << element << separator;
+    }
+    std::cout << std::endl;
+}
+
+template <>
+void printVector(const std::vector<SimpleClass>& vector, const std::string& separator) {
+    for (const SimpleClass element : vector) {
+        // Trailing separator printed
+        std::cout << element.getValue() << separator;
+    }
+    std::cout << std::endl;
+}
+
 // This function is useless lol
 void modifyValueUniquePointerNotReference(std::unique_ptr<SimpleClass> uniquePointer,
                                           int newValue) {
@@ -181,6 +199,30 @@ int main() {
         std::unique_ptr<SimpleClass>& unPointyAlias = unPointy;
     }
     std::cout << unPointy->getValue() << std::endl;
+
+    std::vector<int> v1 = {1, 2, 3, 4, 5, 6, 7};
+    std::vector<int> v2 = v1;
+    v2[3] = -100;
+    printVector(v1);
+    printVector(v2);
+    std::vector<int> v3 = std::move(v2);
+    printVector(v1);
+    printVector(v2);
+    printVector(v3);
+
+    std::cout << std::endl;
+    std::vector<SimpleClass> v4;
+    v4.emplace_back(1);
+    v4.emplace_back(2);
+    v4.emplace_back(3);
+    std::vector<SimpleClass> v5 = v4;
+    v5[1].setValue(-33);
+    printVector(v4);
+    printVector(v5);
+    std::vector<SimpleClass> v6 = std::move(v5);
+    printVector(v4);
+    printVector(v5);
+    printVector(v6);
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {

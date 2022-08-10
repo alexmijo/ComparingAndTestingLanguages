@@ -7,7 +7,7 @@ public:
 
     SimpleClass(int value) : value(value) {}
 
-    int getValue() {
+    int getValue() const {
         return value;
     }
 
