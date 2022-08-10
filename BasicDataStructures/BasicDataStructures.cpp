@@ -141,6 +141,9 @@ int main() {
     variableLenListOfInts.push_back(45);
     printVector(variableLenListOfInts);
 
+    // TODO: Add the iterator stuff from here
+    //  https://stackoverflow.com/questions/2395275/how-to-navigate-through-a-vector-using-iterators-c
+
     //----------------------------------------------------------------------------------------------
     // Sets
     // Sorted, usually implemented as red black tree (O(log n))
