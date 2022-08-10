@@ -88,6 +88,9 @@ void printUnorderedMap(const std::unordered_map<keyT, valueT>& map,
 }
 
 int main() {
+    // TODO: Take into account this
+    //  https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back
+
     //----------------------------------------------------------------------------------------------
     // Strings
     std::string stringThing = "Hi Mom";
