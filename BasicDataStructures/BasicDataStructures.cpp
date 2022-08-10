@@ -209,7 +209,8 @@ int main() {
         << std::endl;
     printUnorderedMap(unorderedMapOfInts);
 
-    // TODO: Deque, queue, stack
+    // TODO: Deque, queue, stack, priority_queue (for minheap, maxheap and containing user defined
+    //  types)
 }
 
 // <separator> optional
