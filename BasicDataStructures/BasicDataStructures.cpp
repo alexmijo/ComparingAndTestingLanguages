@@ -92,6 +92,13 @@ int main() {
     // Strings
     std::string stringThing = "Hi Mom";
     std::cout << stringThing.at(3) << std::endl;
+    // Actually, see
+    //  https://docs.microsoft.com/en-us/cpp/standard-library/basic-string-class?view=msvc-170#remarks-4
+    //  for why [] should be used when I know that the index won't be out of bounds, and .at()
+    //  should be used only when I'm not sure if the index is gonna be in bounds.
+    std::cout << stringThing[3] << std::endl;
+    // TODO: Figure out the stuff I wanted to about mutating/building/manipulating strings
+    //  efficiently.
 
     //----------------------------------------------------------------------------------------------
     // Lists
