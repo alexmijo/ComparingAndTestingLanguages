@@ -14,6 +14,11 @@
 //
 #include <unordered_map>
 
+#include <stack>
+#include <queue>
+#include <deque>
+
+// TODO: Maybe split these into separate files.
 
 const int KNOWN_LENGTH = 3;
 
@@ -209,8 +214,45 @@ int main() {
         << std::endl;
     printUnorderedMap(unorderedMapOfInts);
 
-    // TODO: Deque, queue, stack, priority_queue (for minheap, maxheap and containing user defined
-    //  types)
+    // TODO: Containing user defined types. Both for the maps and priority_queue.
+    //----------------------------------------------------------------------------------------------
+    // Deque, queue, stack, max heap, min heap
+    std::deque<int> deck = {1, 2, 3};
+    deck.emplace_back(4);
+    deck.emplace_front(0);
+    deck.pop_back();
+    deck.pop_front();
+    std::cout << deck.back() << deck.front() << std::endl;
+
+    std::queue<int> q;
+    q.emplace(1);
+    q.emplace(2);
+    q.emplace(3);
+    q.pop();
+    std::cout << q.front() << q.back() << std::endl;
+
+    std::stack<int> stak;
+    stak.emplace(1);
+    stak.emplace(2);
+    stak.emplace(3);
+    stak.pop();
+    std::cout << stak.top() << std::endl;
+
+    std::priority_queue<int> maxHeap;
+    maxHeap.emplace(1);
+    maxHeap.emplace(3);
+    maxHeap.emplace(4);
+    maxHeap.emplace(2);
+    maxHeap.pop();
+    std::cout << maxHeap.top() << std::endl;
+
+    std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
+    minHeap.emplace(1);
+    minHeap.emplace(3);
+    minHeap.emplace(4);
+    minHeap.emplace(2);
+    minHeap.pop();
+    std::cout << minHeap.top() << std::endl;
 }
 
 // <separator> optional
