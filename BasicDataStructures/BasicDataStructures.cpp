@@ -29,7 +29,7 @@ void printArray(const T[], const int, const std::string& separator=" ");
 
 template <typename T, int size>
 void printLibraryArray(const std::array<T, size>& array, const std::string& separator=" ") {
-    for (const T element : array) {
+    for (const T& element : array) {
         // Trailing separator printed
         std::cout << element << separator;
     }
@@ -38,7 +38,7 @@ void printLibraryArray(const std::array<T, size>& array, const std::string& sepa
 
 template <typename T>
 void printVector(const std::vector<T>& vector, const std::string& separator=" ") {
-    for (const T element : vector) {
+    for (const T& element : vector) {
         // Trailing separator printed
         std::cout << element << separator;
     }
@@ -47,7 +47,7 @@ void printVector(const std::vector<T>& vector, const std::string& separator=" ")
 
 template <typename T>
 void printOrderedSet(const std::set<T>& set, const std::string& separator=" ") {
-    for (const T element : set) {
+    for (const T& element : set) {
         // Trailing separator printed
         std::cout << element << separator;
     }
@@ -56,7 +56,7 @@ void printOrderedSet(const std::set<T>& set, const std::string& separator=" ") {
 
 template <typename T>
 void printUnorderedSet(const std::unordered_set<T>& set, const std::string& separator=" ") {
-    for (const T element : set) {
+    for (const T& element : set) {
         // Trailing separator printed
         std::cout << element << separator;
     }

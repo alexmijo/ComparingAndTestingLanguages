@@ -1,4 +1,5 @@
 #include "OtherCppCode/DeepClass.cpp"
+#include "OtherCppCode/CppUtilities.cpp"
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -12,15 +13,6 @@ void mutateBetterDeepObject(BetterDeepClass, int, int, int);
 
 void modifyValueUniquePointer(const std::unique_ptr<SimpleClass>& uniquePointer, int newValue) {
     uniquePointer->setValue(newValue);
-}
-
-template <typename T>
-void printVector(const std::vector<T>& vector, const std::string& separator=" ") {
-    for (const T element : vector) {
-        // Trailing separator printed
-        std::cout << element << separator;
-    }
-    std::cout << std::endl;
 }
 
 template <>
@@ -223,6 +215,12 @@ int main() {
     printVector(v4);
     printVector(v5);
     printVector(v6);
+
+    int x = 2;
+    int z = 3;
+    auto y = (x + 0.5) / z;
+    std::cout << x + 0.5 << std::endl;
+    std::cout << y << std::endl;
 }
 
 void mutateSimpleObject(SimpleClass simpleObject, int newValue) {
