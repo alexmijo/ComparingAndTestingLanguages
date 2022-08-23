@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <array>
 
 template <typename T>
 void printVector(const std::vector<T>& vector, const std::string& separator=" ") {
