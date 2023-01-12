@@ -1,0 +1,24 @@
+struct intPairHash {
+    size_t operator()(const pair<int, int>& intPair) const {
+        hash<int> intHash;
+        return intHash(intPair.first) * 31 + intHash(intPair.second);
+    }
+};
+
+
+struct compareIntPair {
+    bool operator()(const pair<int, int>& pair1, const pair<int, int>& pair2) {
+        return pair1.first < pair2.first || 
+            (pair1.first == pair2.first && pair1.second < pair2.second);
+    }
+};
+
+priority_queue<pair<int, int>, vector<pair<int, int>>, compareIntPair> maxHeap;
+
+struct PixelCenterAndPopHash {
+    size_t operator()(const PixelCenterAndPop &p) const {
+        std::hash<int> intHash;
+        size_t h = intHash(p.x) * 31 + intHash(p.y);
+        return h * 31 + std::hash<double>()(p.pop);
+    }
+};

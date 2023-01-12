@@ -66,13 +66,16 @@ int main() {
               << std::endl << "Shallow value after mutateDeepObject: "
               << deepObject.getShallowValue() << std::endl;
 
-    // Bad cause it causes a double (edit: triple) delete for pointer
+    // Bad cause it causes a double (edit: triple) delete for pointer Edit again: Why did I say 
+    //  triple?
     DeepClass newDeepObject = deepObject;
     */
 
     // Need to pass deepObject by reference to avoid making a copy and therefore avoid the above
     //  issues. Really just shouldn't have a pointer in there that is deleted in it's destructor
     //  though. Sort of defeats the point of the test anyways.
+    // Edit: Actually couldn't I still do RAII the C way fairly safely just by removing its default
+    //  copy constructor?
     betterMutateDeepObject(deepObject, 4, 5, 6);
     std::cout << "Object value after betterMutateDeepObject: " << deepObject.getObjectValue()
               << std::endl << "Pointer value after betterMutateDeepObject: "
