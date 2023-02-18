@@ -48,10 +48,10 @@ int main() {
     }
 
     for (; i < numTimes * 2; i++) {
-        falseSum += vectorMoveTest(true);
-        trueSum += vectorMoveTest(false);
-        trueSum += vectorMoveTest(false);
-        falseSum += vectorMoveTest(true);
+        trueSum += vectorMoveTest(true);
+        falseSum += vectorMoveTest(false);
+        falseSum += vectorMoveTest(false);
+        trueSum += vectorMoveTest(true);
         std::cout << "num times: " << (i + 1)
                   << ", move avg: " << ((trueSum / ((i + 1) * 2)) / 1000000000.)
                   << ", copy avg: " << ((falseSum / ((i + 1) * 2)) / 1000000000.) << std::endl;
