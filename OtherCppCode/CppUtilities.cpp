@@ -16,7 +16,7 @@ std::string vectorToString(const std::vector<T> &vector, const std::string &sepa
     return ss.str();
 }
 
-// TODO: Templatized vs non-templatized (these ones) useEndl
+// TODO: Templatized vs non-templatized (this one) useEndl
 template <typename T>
 void printVector(const std::vector<T> &vector, const std::string &separator = " ",
                  const bool useEndl = false) {
@@ -25,26 +25,6 @@ void printVector(const std::vector<T> &vector, const std::string &separator = " 
         std::cout << std::endl;
     }
     { std::cout << "\n"; }
-}
-
-template <typename T>
-void fastPrintVector(const std::vector<T> &vector, const std::string &separator = " ",
-                     const bool useEndl = false) {
-    if (vector.empty()) {
-        if (useEndl) {
-            std::cout << std::endl;
-        }
-        return;
-    }
-    std::cout << vector[0];
-    for (int i = 1; i < vector.size(); i++) {
-        std::cout << separator << vector[i];
-    }
-    if (useEndl) {
-        std::cout << std::endl;
-    } else {
-        std::cout << "\n";
-    }
 }
 
 template <typename T1, typename T2>

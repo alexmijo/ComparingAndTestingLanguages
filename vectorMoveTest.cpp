@@ -60,7 +60,7 @@ int64_t printVectorTest(const bool useFast, const bool print = false) {
     const auto then = std::chrono::system_clock::now();
     std::vector<std::string> vec1(1000000, "Alexander Paul Moreno");
     if (useFast) {
-        fastPrintVector(vec1);
+        //fastPrintVector(vec1);
     } else {
         printVector(vec1);
     }
