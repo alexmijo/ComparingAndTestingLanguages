@@ -88,7 +88,7 @@ void runPrintVectorTests() {
 }
 
 int main() {
-    const bool runMoveTests = false;
+    const bool runMoveTests = true;
     if (runMoveTests) {
         runVectorMoveTests(30);
     } else {
