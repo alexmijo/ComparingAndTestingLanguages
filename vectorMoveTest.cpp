@@ -56,7 +56,36 @@ void runVectorMoveTests(const int numTimes = 1) {
     }
 }
 
-void runPrintVectorTests() { std::cout << std::endl; }
+int64_t printVectorTest(const bool useFast, const bool print = false) {
+    const auto then = std::chrono::system_clock::now();
+    std::vector<std::string> vec1(1000000, "Alexander Paul Moreno");
+    if (useFast) {
+        fastPrintVector(vec1);
+    } else {
+        printVector(vec1);
+    }
+    const auto now = std::chrono::system_clock::now();
+    const int64_t diff = std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
+    if (print) {
+        std::cout << (useFast ? "Fast" : "Not fast") << std::endl;
+        std::cout << "time: " << diff << "ns" << std::endl;
+        std::cout << "time / 1,000,000,000: " << (diff / 1000000000.) << "s" << std::endl;
+    }
+    return diff;
+}
+
+void runPrintVectorTests() {
+    const int64_t notFast = printVectorTest(false);
+    const int64_t fast = printVectorTest(true);
+    bool useFast = false;
+    for (int i = 0; i < 2; i++) {
+        std::cout << (useFast ? "Fast" : "Not fast") << std::endl;
+        std::cout << "time: " << (useFast ? fast : notFast) << "ns" << std::endl;
+        std::cout << "time / 1,000,000,000: " << ((useFast ? fast : notFast) / 1000000000.) << "s"
+                  << std::endl;
+        useFast = true;
+    }
+}
 
 int main() {
     const bool runMoveTests = false;
