@@ -23,8 +23,9 @@ void printVector(const std::vector<T> &vector, const std::string &separator = " 
     std::cout << vectorToString(vector, separator);
     if (useEndl) {
         std::cout << std::endl;
+    } else {
+        std::cout << "\n";
     }
-    { std::cout << "\n"; }
 }
 
 template <typename T1, typename T2>
