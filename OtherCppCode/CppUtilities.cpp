@@ -29,25 +29,27 @@ void printVector(const std::vector<T> &vector, const std::string &separator = " 
 }
 
 template <typename T1, typename T2>
-void printPair(const std::pair<T1, T2> &p, bool printNewline = false) {
-    std::cout << p.first << ", " << p.second;
-    if (printNewline) {
-        std::cout << "\n";
-    }
+void pairIntoStringstream(const std::pair<T1, T2> &p, std::stringstream &ss) {
+    ss << p.first << ", " << p.second;
+}
+
+template <typename T1, typename T2>
+std::string pairToString(const std::pair<T1, T2> &p) {
+    std::stringstream ss;
+    pairIntoStringstream(p, ss);
+    return ss.str();
 }
 
 template <>
-void printVector(const std::vector<std::pair<int, int>> &vector, const std::string &separator,
-                 const bool useEndl) {
-    for (const std::pair<int, int> &element : vector) {
-        printPair(element);
-        // Trailing separator printed
-        std::cout << separator;
-    }
-    if (useEndl) {
-        std::cout << std::endl;
-    } else {
-        std::cout << "\n";
+std::string vectorToString(const std::vector<std::pair<int, int>> &vector,
+                           const std::string &separator) {
+                            if (vector.empty()) {
+                                return "";
+                            }
+    std::stringstream ss;
+    pairIntoStringstream(vector[0], ss);
+    for (int i = 0; i < vector.size(); i++) {
+        pairIntoStringstream(element, ss);
     }
 }
 
